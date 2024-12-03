@@ -1,0 +1,12 @@
+Script started on 2024-11-30 14:35:40-03:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="147" LINES="37"]
+bash: jump: command not found
+]0;nycdra@iury-arch:~/projects/part12-containers-applications[?2004h[nycdra@iury-arch part12-containers-applications]$ sudo docker container run -i [Kt ubuntu bahs[K[Ksh
+[?2004l[sudo] password for nycdra: 
+[?2004h]0;root@5fdbb49db1f3: /root@5fdbb49db1f3:/# mkdir /ur sr/src/app
+[?2004l[?2004h]0;root@5fdbb49db1f3: /root@5fdbb49db1f3:/# toc uch u /usr/src/app/index.js
+[?2004l[?2004h]0;root@5fdbb49db1f3: /root@5fdbb49db1f3:/# [Kexit
+[?2004lexit
+]0;nycdra@iury-arch:~/projects/part12-containers-applications[?2004h[nycdra@iury-arch part12-containers-applications]$ exit
+[?2004lexit
+
+Script done on 2024-11-30 14:36:23-03:00 [COMMAND_EXIT_CODE="0"]

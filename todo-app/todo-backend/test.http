@@ -1,0 +1,17 @@
+### 
+GET http://localhost:3000/todos/
+
+
+
+
+###
+GET http://localhost:3000/todos/674f34a37a99400fb0e9496a
+
+###
+PUT http://localhost:3000/todos/674f34a37a99400fb0e9496a
+Content-type: application/json
+
+{
+	"text": "new text",
+	"done": true 
+}
