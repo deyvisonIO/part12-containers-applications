@@ -1,4 +1,5 @@
 const express = require('express');
+const redis = require('../redis')
 const router = express.Router();
 
 const configs = require('../util/config')
@@ -14,5 +15,18 @@ router.get('/', async (req, res) => {
     visits
   });
 });
+
+router.get('/statistics', async (req, res) => {
+  const addedTodosCount = await redis.getAsync("added_todos");
+
+  if(!addedTodosCount) {
+    await redis.setAsync("added_todos", 0);
+
+    res.json({ "added_todos": 0 })
+    return
+  }
+
+  res.json({ "added_todos": parseInt(addedTodosCount) })
+})
 
 module.exports = router;

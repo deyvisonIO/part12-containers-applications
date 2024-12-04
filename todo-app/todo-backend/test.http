@@ -8,6 +8,14 @@ GET http://localhost:3000/todos/
 GET http://localhost:3000/todos/674f34a37a99400fb0e9496a
 
 ###
+POST http://localhost:3000/todos/
+Content-type: application/json
+
+{
+	"text": "texto novo"
+}
+
+###
 PUT http://localhost:3000/todos/674f34a37a99400fb0e9496a
 Content-type: application/json
 
