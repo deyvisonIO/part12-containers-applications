@@ -1,0 +1,52 @@
+services:
+  app:
+    image: bloglist-frontend
+    build:
+      context: ./frontend # The context will pick this directory as the "build context"
+      dockerfile: Dockerfile # This will simply tell which dockerfile to read
+    container_name: bloglist-frontend # This will name the container hello-front-dev
+
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
+    depends_on:
+      - app
+      - server
+    
+  mongo:
+    image: mongo
+    ports:
+     - 3456:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: bloglistApp
+    volumes:
+      - ./backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./mongo_data:/usr/src/app
+
+  server:
+    image: bloglist-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - MONGODB_URL=mongodb://root:root@mongo:27017/bloglistApp?retryWrites=true&w=majority
+      - TEST_MONGODB_URL=mongodb://root:root@mongo:27017/testBloglistApp?retryWrites=true&w=majority
+      - NODE_ENV=production
+      - PORT=3003
+      - SECRET=84390-248392-48392
+    container_name: bloglist-backend
+    depends_on:
+       - mongo
+
+# volumes:
+#   mongo_data:
+#     driver: local
+  # node_modules:
+#   redis_data:
+#     driver: local
